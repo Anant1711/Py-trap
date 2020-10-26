@@ -15,4 +15,4 @@
   <h4>ruby</h4>
   <h4>msfvenom</h4>
   
-[<h2> How it works ? </h2>](https://anant1711.github.io/web/pyhunt.html) 
+[<h2> How it works ? </h2>](https://anant1711.github.io/web/pytrap.html) 
